@@ -19,6 +19,6 @@ spring:
 logging:
   level:
     org.hibernate.sql: debug # logger
-#    org.hibernate.type: trace # 파라미터 확인
+    org.hibernate.type: trace # 파라미터 확인
 
 
