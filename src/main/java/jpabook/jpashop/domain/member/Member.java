@@ -25,7 +25,7 @@ public class Member {
 	@Column(name = "member_id")
 	private Long id;
 
-	private String name;
+	private String name; // 실무에서는 검증 로직이 있어도 멀티 쓰레드 상황을 고려해서 회원 테이블의 회원명 컬럼에 유니크 제약 조건을 추가하는 것이 안전
 
 	@Embedded
 	private Address address;
