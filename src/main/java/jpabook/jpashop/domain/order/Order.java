@@ -40,6 +40,10 @@ public class Order {
 	@JoinColumn(name = "member_id")
 	private Member member;
 
+	/**
+	 * OrderItem과 Delivery는 Order 가 private owner 이므로 cascade 옵션을 사용했다.
+	 * 즉, Order만 OrderItem과 Delivery를 참조 & persist 라이프 사이클이 같기 때문에 cascade를 사용한 것이다.
+	 */
 	@OneToMany(mappedBy = "order", cascade = ALL)
 	private List<OrderItem> orderItems = new ArrayList<>();
 
