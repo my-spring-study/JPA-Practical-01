@@ -10,10 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import jpabook.jpashop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // protected OrderItem() {} 생성
 @Getter
 @Setter
 public class OrderItem {

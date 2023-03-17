@@ -22,11 +22,14 @@ import javax.persistence.Table;
 import jpabook.jpashop.domain.delivery.Delivery;
 import jpabook.jpashop.domain.delivery.DeliveryStatus;
 import jpabook.jpashop.domain.member.Member;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
 public class Order {
@@ -57,9 +60,6 @@ public class Order {
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
-
-	public Order() {
-	}
 
 	//== 생성 메서드 ==//
 	/* 이렇게 작성하는게 중요한 이유: 생성 시 변경 점이 생기면 이 메서드만 변경하면 된다. */
