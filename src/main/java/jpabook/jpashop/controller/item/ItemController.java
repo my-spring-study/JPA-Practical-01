@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.service.ItemService;
+import jpabook.jpashop.service.UpdateItemDto;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -68,15 +69,21 @@ public class ItemController {
 	@PostMapping("/items/{itemId}/edit")
 	public String updateItem(@ModelAttribute("form") BookForm form, @PathVariable Long itemId) {
 
-		Book book = new Book();
-		book.setId(form.getId());
-		book.setName(form.getName());
-		book.setPrice(form.getPrice());
-		book.setStockQuantity(form.getStockQuantity());
-		book.setAuthor(form.getAuthor());
-		book.setIsbn(form.getIsbn());
+		// 임의로 만들어낸 엔티티 -> 기존 식별자를 갖고 있으면 준영속 엔티티이다.
+		// 준영속 엔티티는 변경감지가 바로 작동하지 않기 때문에, DB에서 pk로 찾아서 영속상태를 만들고 변경감지를 하거나,
+		// 아니면 병합(merge)를 사용하여 컬럼을 업데이트한다.
+		// Book book = new Book();
+		// book.setId(form.getId());
+		// book.setName(form.getName());
+		// book.setPrice(form.getPrice());
+		// book.setStockQuantity(form.getStockQuantity());
+		// book.setAuthor(form.getAuthor());
+		// book.setIsbn(form.getIsbn());
 
-		itemService.saveItem(book);
+		// itemService.saveItem(book);
+
+		UpdateItemDto itemDto = new UpdateItemDto(form.getName(), form.getPrice(), form.getStockQuantity());
+		itemService.updateItem(itemId, itemDto);
 		return "redirect:/items";
 	}
 }
