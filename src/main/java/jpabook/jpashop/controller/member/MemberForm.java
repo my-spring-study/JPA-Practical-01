@@ -1,4 +1,4 @@
-package jpabook.jpashop.controller;
+package jpabook.jpashop.controller.member;
 
 import javax.validation.constraints.NotEmpty;
 
