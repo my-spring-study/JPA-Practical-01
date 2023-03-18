@@ -24,6 +24,11 @@ public class ItemService {
 	@Transactional
 	public void updateItem(Long itemId, UpdateItemDto itemDto) {
 		Item findItem = itemRepository.findOne(itemId);
+
+		/*
+			Setter없이 엔티티 안에서 변경사항을 바로 추적할 수 있는 메서드를 만들어라.
+			예) findItem.change(name, price, stockQuantity)
+		 */
 		findItem.setName(itemDto.getName());
 		findItem.setPrice(itemDto.getPrice());
 		findItem.setStockQuantity(itemDto.getStockQuantity());
